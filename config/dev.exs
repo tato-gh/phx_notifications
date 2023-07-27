@@ -16,6 +16,7 @@ config :phx_notifications, PhxNotificationsWeb.Endpoint,
   secret_key_base: "5DETPHEZrGKxEnyPXKT4IWh4Ilu3mudh9zCdVx6jxHjqLbcBNLsGzdvQWODFyJVv",
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
+    esbuild_sw: {Esbuild, :install_and_run, [:sw, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
   ]
 

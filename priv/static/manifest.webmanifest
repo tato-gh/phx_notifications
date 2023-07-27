@@ -1,0 +1,17 @@
+{
+  "lang": "ja-JP",
+  "name": "My PWA Practice",
+  "short_name": "My PWA",
+  "description": "A PWA application for practice",
+  "start_url": "/",
+  "background_color": "#2f3d58",
+  "theme_color": "#2f3d58",
+  "orientation": "any",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/images/icon512.png",
+      "sizes": "512x512"
+    }
+  ]
+}

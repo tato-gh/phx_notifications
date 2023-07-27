@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "register-service-worker": "^1.7.2"
+  }
+}
