@@ -43,3 +43,38 @@ liveSocket.connect()
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket
 
+
+// for PWA install
+
+window.addEventListener('appinstalled', (e) => {
+  console.log("already installed")
+  const installBtn = document.querySelector('#btn-install')
+  if(installBtn) {
+    installBtn.style.display = 'none'
+  }
+})
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  console.log("install prompt")
+  let deferredPrompt = e
+
+  const installBtn = document.querySelector('#btn-install')
+
+  if(installBtn) {
+    installBtn.style.display = 'block'
+
+    installBtn.addEventListener('click', (e) => {
+      deferredPrompt.prompt()
+
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('accepted')
+          installBtn.style.display = 'none'
+        } else {
+          console.log('dismissed')
+        }
+        deferredPrompt = null
+      })
+    })
+  }
+})

@@ -22,7 +22,7 @@ config :esbuild,
   version: "0.17.11",
   default: [
     args:
-      ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
+      ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/* --define:process.env.PUSH_PUBLIC_KEY='#{System.get_env("PUSH_PUBLIC_KEY")}'),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ],
@@ -44,6 +44,12 @@ config :tailwind,
     ),
     cd: Path.expand("../assets", __DIR__)
   ]
+
+# Configure Web push
+config :web_push_encryption, :vapid_details,
+  subject: System.get_env("PUSH_SUBJECT"),
+  public_key: System.get_env("PUSH_PUBLIC_KEY"),
+  private_key: System.get_env("PUSH_PRIVATE_KEY")
 
 # Configures Elixir's Logger
 config :logger, :console,
