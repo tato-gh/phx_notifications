@@ -1,0 +1,23 @@
+<div id="witout_sw" phx-hook={get_hook(@live_action)}>
+  <.header> ServiceWorkerなし </.header>
+
+  <p>下記のボタンをクリックしてください</p>
+
+  <.simple_form
+    for={@form}
+    phx-submit="submit"
+  >
+    <.input
+      field={@form[:message]}
+      type="textarea"
+      label="送信内容" />
+    <.input
+      field={@form[:waiting_sec]}
+      type="text"
+      label="待ち時間（秒）" />
+
+    <:actions>
+      <.button phx-disable-with="送信中...">送信</.button>
+    </:actions>
+  </.simple_form>
+</div>
