@@ -46,14 +46,6 @@ config :tailwind,
     cd: Path.expand("../assets", __DIR__)
   ]
 
-# Configure Web push
-config :web_push_encryption, :vapid_details,
-  subject: System.get_env("PUSH_SUBJECT"),
-  public_key: System.get_env("PUSH_PUBLIC_KEY"),
-  private_key: System.get_env("PUSH_PRIVATE_KEY")
-
-config :web_push_encryption, :http_client, PhxNotifications.HttpClient
-
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
