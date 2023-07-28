@@ -36,3 +36,4 @@ phx_notifications-*.tar
 npm-debug.log
 /assets/node_modules/
 
+.env
