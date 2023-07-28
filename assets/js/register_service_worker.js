@@ -3,7 +3,7 @@
 import { register } from 'register-service-worker'
 
 // if (process.env.NODE_ENV === 'production') {
-  register("/assets/service_worker.js", {
+  register("/sw.js", {
     ready () {
       console.log('Service served by cache.')
     },

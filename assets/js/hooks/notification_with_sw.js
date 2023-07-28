@@ -5,7 +5,6 @@ const NotificationWithSW = {
     this.handleEvent("send", async payload => {
       console.log(payload)
 
-      // サブスクリプション有無と通知許可依頼
       const subscription = await getSubscription()
       if (!subscription) {
         const permission = await Notification.requestPermission()
@@ -14,6 +13,8 @@ const NotificationWithSW = {
         } else {
           await createSubscription().then(subscription => {
             // 通知情報自体はここでsubscriptionを参照して取得可能
+            // NOTE:
+            // ここで取得した場合に、例えばサーバ側の公開鍵を変えた際に（再取得が必要だが）、すでに通知を許可しているユーザーに対して実行されずに、エラーが出続ける
           })
         }
       }

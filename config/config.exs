@@ -26,9 +26,10 @@ config :esbuild,
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ],
+  # Need to put service_worker.js to app-root directory to work.
   sw: [
     args:
-      ~w(js/service_worker.js --target=es2017 --outdir=../priv/static/assets),
+      ~w(js/service_worker.js --target=es2017 --outfile=../priv/static/sw.js),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
@@ -50,6 +51,8 @@ config :web_push_encryption, :vapid_details,
   subject: System.get_env("PUSH_SUBJECT"),
   public_key: System.get_env("PUSH_PUBLIC_KEY"),
   private_key: System.get_env("PUSH_PRIVATE_KEY")
+
+config :web_push_encryption, :http_client, PhxNotifications.HttpClient
 
 # Configures Elixir's Logger
 config :logger, :console,
