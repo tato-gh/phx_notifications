@@ -10,7 +10,10 @@ self.addEventListener('push', (e) => {
     body : data.body,
     data: {
       link_to: data.link
-    }
+    },
+    silent: false,
+    vibrate: [200, 100, 200, 100, 200, 100, 200],
+    requireInteraction: true
     // icon: data.icon,
   }
   e.waitUntil(self.registration.showNotification(title, options))
