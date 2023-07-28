@@ -24,14 +24,10 @@ defmodule PhxNotificationsWeb.NotificationLive do
   def handle_event("send_from_server", params, socket) do
     data_json = build_send_data(params["message"])
     subscription = build_subscription(params["subscription"])
-    Process.send_after(self(), {:send_now, data_json, subscription}, String.to_integer(params["waiting_sec"]) * 1000)
+    sec = String.to_integer(params["waiting_sec"])
 
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_info({:send_now, data_json, subscription}, socket) do
-    WebPushEncryption.send_web_push(data_json, subscription)
+    # ブラウザを閉じても動く確認のため別プロセスで実行
+    PhxNotifications.Notifier.run(sec, {data_json, subscription})
 
     {:noreply, socket}
   end

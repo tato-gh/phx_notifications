@@ -13,9 +13,10 @@ defmodule PhxNotifications.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: PhxNotifications.PubSub},
       # Start the Endpoint (http/https)
-      PhxNotificationsWeb.Endpoint
+      PhxNotificationsWeb.Endpoint,
       # Start a worker by calling: PhxNotifications.Worker.start_link(arg)
       # {PhxNotifications.Worker, arg}
+      {PhxNotifications.Notifier, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
